@@ -12,12 +12,12 @@
   - cryptography
 
 - name: To install nodejs and mysql
- ansible.builtin.package:
-  name: "{{ item }}"
-  state: installed
- loop:
- - nodejs
- - mysql
+  ansible.builtin.package:
+   name: "{{ item }}"
+   state: installed
+  loop:
+  - nodejs
+  - mysql
 
 - name: Create user
   ansible.builtin.user:
