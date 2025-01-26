@@ -4,13 +4,6 @@
 - name: To enable nodejs 20 version
   ansible.builtin.command: dnf module enable nodejs:20 -y
 
-- name: To install mysql libraries
-  ansbile.builtin.pip:
-    name: "{{ item }}"
-  loop:
-  - PyMySQL
-  - cryptography
-
 - name: To install nodejs and mysql
   ansible.builtin.package:
     name: "{{ item }}"
@@ -32,6 +25,13 @@
   ansible.builtin.get_url:
     url:  https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
     dest: /tmp/backend.zip
+
+- name: To install mysql libraries
+  ansbile.builtin.pip:
+    name: "{{ item }}"
+  loop:
+  - PyMySQL
+  - cryptography
 
 - name: unzip source code in /app
   ansible.builtin.unarchive:
@@ -59,7 +59,7 @@
 
 - name: Reload Daemon and restart service
   ansible.builtin.systemd_service:
-  enabled: yes  
-  state: restarted
-  daemon_reload: true
-  name: backend
+    enabled: yes  
+    state: restarted
+    daemon_reload: true
+    name: backend
