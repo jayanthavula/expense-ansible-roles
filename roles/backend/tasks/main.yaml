@@ -16,15 +16,27 @@
   ansible.builtin.user:
     name: expense
 
-- name: create directory /app
-  ansible.builtin.file:
-    path: /app
-    state: directory
 
-- name: download source code
-  ansible.builtin.get_url:
-    url:  https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-    dest: /tmp/backend.zip
+- name: include from common role
+  include_role:
+    name: common
+    tasks_from: main
+
+# - name: create directory /app
+#   ansible.builtin.file:
+#     path: /app
+#     state: directory
+
+# - name: download source code
+#   ansible.builtin.get_url:
+#     url:  https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+#     dest: /tmp/backend.zip
+
+# - name: unzip source code in /app
+#   ansible.builtin.unarchive:
+#     src: /tmp/backend.zip
+#     dest: /app
+#     remote_src: true
 
 - name: To install mysql libraries
   ansible.builtin.pip:
@@ -32,12 +44,6 @@
   loop:
   - PyMySQL
   - cryptography
-
-- name: unzip source code in /app
-  ansible.builtin.unarchive:
-    src: /tmp/backend.zip
-    dest: /app
-    remote_src: true
 
 - name: copy backend service
   ansible.builtin.template: #it will search in template folder
