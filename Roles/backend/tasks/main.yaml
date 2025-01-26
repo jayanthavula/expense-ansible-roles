@@ -49,7 +49,7 @@
     path: /app
 
 - name: import msql data
-  community.sql.mysql_db:
+  community.mysql.mysql_db:
     state: import
     name: all
     login_user: "{{ MYSQL_USER }}"
