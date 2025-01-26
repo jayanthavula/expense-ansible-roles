@@ -11,7 +11,7 @@
   - PyMySQL
   - cryptography
 
--name: To install nodejs and mysql
+- name: To install nodejs and mysql
  ansible.builtin.package:
   name: "{{ item }}"
   state: installed
