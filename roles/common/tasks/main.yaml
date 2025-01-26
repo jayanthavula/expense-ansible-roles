@@ -6,7 +6,7 @@
 - name: create app directory
   ansible.builtin.file:
     path: "{{ APP_LOCATION }}" #backend folder is /app, frotend /usr/share/nginx/html
-    state: present
+    state: directory
 
 - name: download file
   ansible.builtin.unarchive:
