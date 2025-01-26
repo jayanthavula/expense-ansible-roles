@@ -48,7 +48,7 @@
   community.general.npm:
     path: /app
 
-- name: import msql data
+- name: import mysql data
   community.mysql.mysql_db:
     state: import
     name: all
