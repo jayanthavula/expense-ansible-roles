@@ -27,7 +27,7 @@
     dest: /tmp/backend.zip
 
 - name: To install mysql libraries
-  ansbile.builtin.pip:
+  ansible.builtin.pip:
     name: "{{ item }}"
   loop:
   - PyMySQL
